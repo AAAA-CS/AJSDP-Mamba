@@ -25,3 +25,22 @@ einops, timm
 scipy, numpy, scikit-learn, matplotlib
 
 torchsummary, torch_optimizer (optional)
+# Data Preparation
+Place your HSI datasets in the ./data/ folder with the following structure:
+./data/
+├── IndianPines/
+│   ├── Indian_pines_corrected.mat
+│   └── Indian_pines_gt.mat
+├── PaviaU/
+│   ├── PaviaU.mat
+│   └── PaviaU_gt.mat
+├── Salinas/
+│   ├── Salinas_corrected.mat
+│   └── Salinas_gt.mat
+└── ... (other datasets as named in dataloader.py)
+The code automatically applies PCA reduction (dimension set per dataset) before training.
+
+# Training
+python training_test.py -d PU -b 64 -e 60 --is_PCA True
+
+Note: The code assumes GPU availability for training. CPU training is possible but will be very slow.
